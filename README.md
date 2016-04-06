@@ -76,6 +76,27 @@ use dosamigos\chartjs\ChartJs;
 ?>
 ```
 
+Using default globals
+---------------------
+
+```
+use dosamigos\chartjs\ChartJs;
+
+<?= ChartJs::widget([
+    'type' => 'Line',
+    'options' => $options,
+    'data' => $data,
+    'defaultGlobals' => [
+        'responsive' => true,
+        //...etc.
+    ],
+]);
+?>
+```
+
+Please refer to the documentation for a list of all the options.
+[Chartjs default globals](http://www.chartjs.org/docs/#getting-started-global-chart-configuration)
+
 Further Information
 -------------------
 ChartJs has lots of configuration options. For further information, please check the

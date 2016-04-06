@@ -60,6 +60,9 @@ class ChartJs extends Widget
      * This method will register the bootstrap asset bundle. If you override this method,
      * make sure you call the parent implementation first.
      */
+
+    public $defaultGlobals;
+
     public function init()
     {
         parent::init();
@@ -90,10 +93,11 @@ class ChartJs extends Widget
         $view = $this->getView();
         $data = !empty($this->data) ? Json::encode($this->data) : '{}';
         $options = !empty($this->clientOptions) ? Json::encode($this->clientOptions) : '{}';
+        $defaultGlobals = !empty($this->defaultGlobals) ? Json::encode($this->defaultGlobals) : '{}';
 
         ChartJsAsset::register($view);
 
-        $js = ";var chartJS_{$id} = new Chart(document.getElementById('{$id}').getContext('2d')).{$type}({$data}, {$options});";
+        $js = ";$.extend(Chart.defaults.global, {$defaultGlobals});var chartJS_{$id} = new Chart(document.getElementById('{$id}').getContext('2d')).{$type}({$data}, {$options});";
         $view->registerJs($js);
     }
 }
